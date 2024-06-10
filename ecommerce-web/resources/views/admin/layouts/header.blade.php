@@ -4,7 +4,7 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-    
+
     </ul>
 
     <!-- Right navbar links -->
@@ -95,8 +95,8 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
-      
-      
+
+
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -110,7 +110,14 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-      
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="{{ url('assets/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" >
+            </div>
+            <div class="info">
+                <a  class="d-block">{{Auth::user()->name}}</a>
+            </div>
+        </div>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
@@ -141,7 +148,7 @@
                 </p>
                 </a>
             </li>
-          
+
 
           <li class="nav-item">
                 <a href="{{url('admin/logout')}}" class="nav-link">
@@ -151,7 +158,7 @@
                 </p>
                 </a>
             </li>
-          
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
