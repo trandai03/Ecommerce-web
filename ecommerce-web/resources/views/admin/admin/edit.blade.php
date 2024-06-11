@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label >Email</label>
-                                        <input type="email" class="form-control" value="{{old('name',$getRecord->email)}}" name="email" required placeholder="Enter Email">
+                                        <input type="email" class="form-control" value="{{old('email',$getRecord->email)}}" name="email" required placeholder="Enter Email">
                                     </div>
 
                                     <div class="form-group">

@@ -51,7 +51,7 @@
                                         <td>{{($value->status == 0) ? 'Active' : 'Inactive' }}</td>
                                         <td>
                                             <a href="{{url('admin/admin/edit/'.$value->id)}}" class="btn btn-primary">Edit </a>
-                                            <a href="{{url('admin/admin/delete/'.$value->id)}}" class="btn btn-primary">Delete </a>
+                                            <a href="{{url('admin/admin/delete/'.$value->id)}}" class="btn btn-danger">Delete </a>
 
                                         </td>
 

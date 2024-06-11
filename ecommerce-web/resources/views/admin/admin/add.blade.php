@@ -47,7 +47,7 @@
                                         <label >Status</label>
                                         <select class="form-group" name="status" required>
                                             <option {{(old('status')==0) ? 'selected' : ''}} value="0">Active</option>
-                                            <option {{(old('status')==0) ? 'selected' : ''}} value="1">Inactive</option>
+                                            <option {{(old('status')==1) ? 'selected' : ''}} value="1">Inactive</option>
 
                                         </select>
                                     </div>
