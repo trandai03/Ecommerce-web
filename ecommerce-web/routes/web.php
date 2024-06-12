@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\ColorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +50,20 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/sub_category/edit/{id}', [SubCategoryController::class, 'edit']);
     Route::post('admin/sub_category/edit/{id}', [SubCategoryController::class, 'update']);
     Route::get('admin/sub_category/delete/{id}', [SubCategoryController::class, 'delete']);
-
+    //Brand
+    Route::get('admin/brand/list', [BrandController::class, 'list']);
+    Route::get('admin/brand/add', [BrandController::class, 'add']);
+    Route::post('admin/brand/add', [BrandController::class, 'insert']);
+    Route::get('admin/brand/edit/{id}', [BrandController::class, 'edit']);
+    Route::post('admin/brand/edit/{id}', [BrandController::class, 'update']);
+    Route::get('admin/brand/delete/{id}', [BrandController::class, 'delete']);
+    //Color
+    Route::get('admin/color/list', [ColorController::class, 'list']);
+    Route::get('admin/color/add', [ColorController::class, 'add']);
+    Route::post('admin/color/add', [ColorController::class, 'insert']);
+    Route::get('admin/color/edit/{id}', [ColorController::class, 'edit']);
+    Route::post('admin/color/edit/{id}', [ColorController::class, 'update']);
+    Route::get('admin/color/delete/{id}', [ColorController::class, 'delete']);
 });
 
 

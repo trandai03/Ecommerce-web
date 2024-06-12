@@ -61,7 +61,7 @@ class SubCategoryController extends Controller
         $sub_category->status = trim($request->status);
         $sub_category->meta_title = trim($request->meta_title);
         $sub_category->meta_description = trim($request->meta_description);
-        $sub_category->meta_keywords = trim($request->key_words);
+        $sub_category->meta_keywords = trim($request->meta_keywords);
         $sub_category->save();
 
         return redirect('admin/sub_category/list')->with('success', "Sub Category successfully updated");

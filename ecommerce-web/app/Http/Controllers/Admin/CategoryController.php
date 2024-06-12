@@ -56,7 +56,7 @@ class CategoryController extends Controller
         $category->status = trim($request->status);
         $category->meta_title = trim($request->meta_title);
         $category->meta_description = trim($request->meta_description);
-        $category->meta_keywords = trim($request->key_words);
+        $category->meta_keywords = trim($request->meta_keywords);
         $category->save();
 
         return redirect('admin/category/list')->with('success', "Category successfully updated");
