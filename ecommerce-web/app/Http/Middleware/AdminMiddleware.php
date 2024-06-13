@@ -6,7 +6,6 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
-
 class AdminMiddleware
 {
     /**
@@ -24,8 +23,8 @@ class AdminMiddleware
                 Auth::logout();
                 return redirect('admin');
             }
-            
-        }   
+
+        }
         else{
             Auth::logout();
             return redirect('admin');
