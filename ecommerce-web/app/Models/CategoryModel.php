@@ -15,6 +15,13 @@ class CategoryModel extends Model
         return self::find($id);
     }
 
+    static public function getSingleSlug($slug){
+        return self::where('slug','=', $slug)
+            ->where('category.status', '=', 0)
+            ->where('category.is_delete', '=', 0)
+            ->first();
+    }
+
     static public function getRecord(){
         return self::select('category.*', 'users.name as created_by_name')
             ->join('users', 'users.id', '=', 'category.created_by')
