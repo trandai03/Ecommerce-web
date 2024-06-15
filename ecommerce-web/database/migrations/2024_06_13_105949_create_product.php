@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('title')->nullable()->default(null);
             $table->string('sku')->nullable()->default(null);
             $table->string('slug')->nullable()->default(null);
-            
             $table->integer('category_id')->nullable()->default(null);
             $table->integer('sub_category_id')->nullable()->default(null);
             $table->integer('brand_id')->nullable()->default(null);

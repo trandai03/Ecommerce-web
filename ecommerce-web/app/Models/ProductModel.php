@@ -22,11 +22,9 @@ class ProductModel extends Model
     {
         $return = ProductModel::select(
             'product.*',
-            'users.name as created_by_name'
-            ,
+            'users.name as created_by_name',
             'sub_category.name as sub_category_name',
-            'sub_category.slug as sub_category_slug'
-            ,
+            'sub_category.slug as sub_category_slug',
             'category.name as category_name',
             'category.slug as category_slug'
         )
@@ -35,20 +33,20 @@ class ProductModel extends Model
             ->join('sub_category', 'sub_category.id', '=', 'product.sub_category_id');
 
         if (!empty($category_id)) {
-            $return = $return->where('category_id', $category_id);
+            $return = $return->where('product.category_id', $category_id);
         }
         if (!empty($subcategory_id)) {
-            $return = $return->where('sub_category_id', $subcategory_id);
+            $return = $return->where('product.sub_category_id', $subcategory_id);
         }
         $return = $return->where('product.is_delete', '=', 0)
             ->where('product.status', '=', 0)
             ->orderBy('product.id', 'desc')
-            ->paginate(30);
+            ->paginate(1);
         return $return;
     }
     static public function getImageSingle($product_id)
     {
-        return ProductImageModel::where()->orderBy('order_by', 'asc')->first();
+        return ProductImageModel::where('product_id', '=' , $product_id)->orderBy('order_by', 'asc')->first();
     }
     static public function getRecord()
     {
