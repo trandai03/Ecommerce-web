@@ -63,7 +63,7 @@
                                         <td>{{ date('d-m-Y', strtotime($value->created_at))}}</td>
                                         <td>
                                             <a href="{{url('admin/sub_category/edit/'.$value->id)}}" class="btn btn-primary">Edit </a>
-                                            <a href="{{url('admin/sub_category/delete/'.$value->id)}}" class="btn btn-danger">Delete </a>
+                                            <a onclick="return confirm('Are you want to delete?');" href="{{url('admin/sub_category/delete/'.$value->id)}}" class="btn btn-danger">Delete </a>
 
                                         </td>
                                     @endforeach

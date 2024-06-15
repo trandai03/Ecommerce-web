@@ -13,24 +13,22 @@ return new class extends Migration
     {
         Schema::create('product', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('sku');
-            $table->string('slug');
-            $table->string('name');
-            $table->integer('category_id');
-            $table->integer('sub_category_id');
-            $table->integer('brand_id');
-            $table->double('price');
-            $table->double('old_price');
-            $table->text('description');
-            $table->longtext('short_description');
-            $table->text('additional_information');
-            $table->text('shopping_returns');
-            $table->integer('created_by');
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
-            $table->tinyInteger('status')->default(0);
-            $table->tinyInteger('is_delete')->default(0);
+            $table->string('title')->nullable()->default(null);
+            $table->string('sku')->nullable()->default(null);
+            $table->string('slug')->nullable()->default(null);
+            
+            $table->integer('category_id')->nullable()->default(null);
+            $table->integer('sub_category_id')->nullable()->default(null);
+            $table->integer('brand_id')->nullable()->default(null);
+            $table->double('price')->default(0);
+            $table->double('old_price')->default(0);
+            $table->text('description')->nullable()->default(null);
+            $table->longtext('short_description')->nullable()->default(null);
+            $table->text('additional_information')->nullable()->default(null);
+            $table->text('shipping_returns')->nullable()->default(null);
+            $table->integer('created_by')->nullable()->default(null);
+            $table->tinyInteger('status')->default(0)->comment('0: active, 1: inactive');
+            $table->tinyInteger('is_delete')->default(0)->comment('0: not delete, 1: delete');
             $table->timestamps();
         });
     }

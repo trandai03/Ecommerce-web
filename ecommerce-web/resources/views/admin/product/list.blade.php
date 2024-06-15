@@ -3,35 +3,35 @@
 @endsection
 
 @section('content')
-    <div class="content-wrapper">
+<div class="content-wrapper">
 
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Product List</h1>
-                    </div>
-                    <div class="col-sm-6" style="text-align: right;">
-                        <a href="{{url('admin/product/add')}}" class="btn btn-primary">Add New Product</a>
-                    </div>
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Product List</h1>
+                </div>
+                <div class="col-sm-6" style="text-align: right;">
+                    <a href="{{url('admin/product/add')}}" class="btn btn-primary">Add New Product</a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
 
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        @include('admin.layouts._message')
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    @include('admin.layouts._message')
 
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Product List</h3>
-                            </div>
-                            <div class="card-body p-0">
-                                <table class="table table-striped">
-                                    <thead>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Product List</h3>
+                        </div>
+                        <div class="card-body p-0">
+                            <table class="table table-striped">
+                                <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>Title</th>
@@ -42,40 +42,39 @@
                                         <th>Action</th>
 
                                     </tr>
-                                    </thead>
-                                    <tbody>
+                                </thead>
+                                <tbody>
                                     @foreach($getRecord as $value)
-                                        <tr>
+                                    <tr>
 
-                                            <td>{{$value->id}}</td>
-                                            <td>{{$value->title}}</td>
+                                        <td>{{$value->id}}</td>
+                                        <td>{{$value->title}}</td>
 
-                                            <td>{{$value->created_by_name}}</td>
-                                            <td>{{($value->status == 0) ? 'Active' : 'Inactive' }}</td>
-                                            <td>{{ date('d-m-Y', strtotime($value->created_at))}}</td>
-                                            <td>
-                                                <a href="{{url('admin/product/edit/'.$value->id)}}" class="btn btn-primary">Edit </a>
-                                                <a href="{{url('admin/product/delete/'.$value->id)}}" class="btn btn-danger">Delete </a>
+                                        <td>{{$value->created_by_name}}</td>
+                                        <td>{{($value->status == 0) ? 'Active' : 'Inactive' }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($value->created_at))}}</td>
+                                        <td>
+                                            <a href="{{url('admin/product/edit/'.$value->id)}}" class="btn btn-primary">Edit </a>
+                                            <a onclick="return confirm('Are you want to delete?');" href="{{url('admin/product/delete/'.$value->id)}}" class="btn btn-danger">Delete </a>
 
-                                            </td>
-                                            @endforeach
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.card-body -->
+                                        </td>
+                                        @endforeach
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <!-- /.card -->
+
                     </div>
-                    <!-- /.col -->
+
                 </div>
-
             </div>
-        </section>
 
-    </div>
+        </div>
+    </section>
+
+</div>
 @endsection
 
 @section('script')
-    <!-- <script src="{{url('assets/dist/js/pages/dashboard3.js')}}"></script> -->
+<!-- <script src="{{url('assets/dist/js/pages/dashboard3.js')}}"></script> -->
 @endsection
