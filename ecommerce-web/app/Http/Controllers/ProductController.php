@@ -22,12 +22,15 @@ class ProductController extends Controller
             $data['getSubCategory'] = $getSubCategory;
 
             $data['getCategory'] = $getCategory;
+            $data['getProduct']=ProductModel::getProduct($getCategory->id, $getSubCategory->id);
             return view('product.list',$data);
         }else if(!empty($getCategory)){
             $data['meta_title'] = $getCategory->meta_title;
             $data['meta_keywords'] =$getCategory->meta_keywords;
             $data['meta_description'] = $getCategory->meta_description;
             $data['getCategory'] = $getCategory;
+            $data['getProduct']=ProductModel::getProduct( $getCategory->id);
+
             return view('product.list',$data);
         }else{
             abort(404);
