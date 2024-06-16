@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Request;
 class ProductModel extends Model
 {
     use HasFactory;
@@ -38,10 +38,22 @@ class ProductModel extends Model
         if (!empty($subcategory_id)) {
             $return = $return->where('product.sub_category_id', $subcategory_id);
         }
+        if(!empty(Request::get('sub_category_id'))){
+            $sub_category_id= rtrim(Request::get('sub_category_id'),',');
+            $sub_category_id_array = explode(',', $sub_category_id);
+            $return = $return->whereIn('product.sub_category_id', $sub_category_id_array);
+        }
+        if(!empty(Request::get('color_id'))){
+            $color_id= rtrim(Request::get('$color_id'),',');
+            $color_id_array = explode(',', $color_id);
+            $return = $return->join('product_color', 'product_color.product_id', '=', 'product.id');
+            $return = $return->whereIn('product_color.color_id', $color_id_array);
+        }
         $return = $return->where('product.is_delete', '=', 0)
             ->where('product.status', '=', 0)
+            ->groupBy('product.id')
             ->orderBy('product.id', 'desc')
-            ->paginate(1);
+            ->paginate(10);
         return $return;
     }
     static public function getImageSingle($product_id)
