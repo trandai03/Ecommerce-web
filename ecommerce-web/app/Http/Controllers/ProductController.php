@@ -12,8 +12,7 @@ class ProductController extends Controller
 {
     public function getCategory($slug, $subslug='')
     {
-
-
+        dd($slug);
         $getSubCategory= SubCategoryModel::getSingleSlug($subslug);
         $getCategory= CategoryModel::getSingleSlug($slug);
         $data['getColor'] =ColorModel::getRecordActive();
