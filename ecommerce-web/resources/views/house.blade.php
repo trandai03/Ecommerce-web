@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.app')
 @section('content')
         <main class="main">
             <div class="intro-section bg-lighter pt-5 pb-6">
@@ -7,7 +7,7 @@
                         <div class="col-lg-8">
                             <div class="intro-slider-container slider-container-ratio slider-container-1 mb-2 mb-lg-0">
                                 <div class="intro-slider intro-slider-1 owl-carousel owl-simple owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{
-                                        "nav": false,
+                                        "nav": false, 
                                         "responsive": {
                                             "768": {
                                                 "nav": true
@@ -71,7 +71,7 @@
                                         </div><!-- End .intro-content -->
                                     </div><!-- End .intro-slide -->
                                 </div><!-- End .intro-slider owl-carousel owl-simple -->
-
+                                
                                 <span class="slider-loader"></span><!-- End .slider-loader -->
                             </div><!-- End .intro-slider-container -->
                         </div><!-- End .col-lg-8 -->
@@ -112,9 +112,9 @@
 
                     <div class="mb-6"></div><!-- End .mb-6 -->
 
-                    <div class="owl-carousel owl-simple" data-toggle="owl"
+                    <div class="owl-carousel owl-simple" data-toggle="owl" 
                         data-owl-options='{
-                            "nav": false,
+                            "nav": false, 
                             "dots": false,
                             "margin": 30,
                             "loop": false,
@@ -187,9 +187,9 @@
 
                 <div class="tab-content tab-content-carousel">
                     <div class="tab-pane p-0 fade show active" id="trendy-all-tab" role="tabpanel" aria-labelledby="trendy-all-link">
-                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl"
+                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
                             data-owl-options='{
-                                "nav": false,
+                                "nav": false, 
                                 "dots": true,
                                 "margin": 20,
                                 "loop": false,
@@ -399,9 +399,9 @@
                         </div><!-- End .owl-carousel -->
                     </div><!-- .End .tab-pane -->
                     <div class="tab-pane p-0 fade" id="trendy-fur-tab" role="tabpanel" aria-labelledby="trendy-fur-link">
-                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl"
+                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
                             data-owl-options='{
-                                "nav": false,
+                                "nav": false, 
                                 "dots": true,
                                 "margin": 20,
                                 "loop": false,
@@ -483,9 +483,9 @@
                         </div><!-- End .owl-carousel -->
                     </div><!-- .End .tab-pane -->
                     <div class="tab-pane p-0 fade" id="trendy-decor-tab" role="tabpanel" aria-labelledby="trendy-decor-link">
-                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl"
+                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
                             data-owl-options='{
-                                "nav": false,
+                                "nav": false, 
                                 "dots": true,
                                 "margin": 20,
                                 "loop": false,
@@ -557,9 +557,9 @@
                         </div><!-- End .owl-carousel -->
                     </div><!-- .End .tab-pane -->
                     <div class="tab-pane p-0 fade" id="trendy-light-tab" role="tabpanel" aria-labelledby="trendy-light-link">
-                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl"
+                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
                             data-owl-options='{
-                                "nav": false,
+                                "nav": false, 
                                 "dots": true,
                                 "margin": 20,
                                 "loop": false,
@@ -701,7 +701,7 @@
 
             <div class="mb-5"></div><!-- End .mb-6 -->
 
-
+            
             <div class="container">
                 <div class="heading heading-center mb-6">
                     <h2 class="title">Recent Arrivals</h2><!-- End .title -->
@@ -1013,7 +1013,7 @@
                                         </div><!-- End .product-action -->
                                     </div><!-- End .product -->
                                 </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
-
+                                
                                 <div class="col-6 col-md-4 col-lg-3">
                                     <div class="product product-11 mt-v3 text-center">
                                         <figure class="product-media">
@@ -1249,9 +1249,9 @@
                 <div class="container">
                    <h2 class="title-lg text-center mb-3 mb-md-4">From Our Blog</h2><!-- End .title-lg text-center -->
 
-                    <div class="owl-carousel owl-simple carousel-with-shadow" data-toggle="owl"
+                    <div class="owl-carousel owl-simple carousel-with-shadow" data-toggle="owl" 
                         data-owl-options='{
-                            "nav": false,
+                            "nav": false, 
                             "dots": true,
                             "items": 3,
                             "margin": 20,
@@ -1361,5 +1361,7 @@
                     </div><!-- End .row -->
                 </div><!-- End .container -->
             </div><!-- End .cta -->
-        </main>
+        </main><!-- End .main -->
 @endsection
+        
+    

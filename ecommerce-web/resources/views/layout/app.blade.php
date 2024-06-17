@@ -5,37 +5,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title> {{!empty($meta_title) ? $meta_title : ''}}</title>
-    @if(!empty($meta_keywords))
-    <meta name="keywords" content="{{$meta_keywords}}">
-
-    @endif
-    @if(!empty($meta_description))
-    <meta name="description" content="{{$meta_description}}">
-    @endif
-    <meta name="author" content="p-themes">
+    <title>ECommerce</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
     <link rel="shortcut icon" href="{{url('assets/images/icons/favicon.ico')}}">
-
+    <!-- Plugins CSS File -->
     <link rel="stylesheet" href="{{url('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url('assets/css/plugins/owl-carousel/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{url('assets/css/plugins/magnific-popup/magnific-popup.css')}}">
+    <!-- Main CSS File -->
     <link rel="stylesheet" href="{{url('assets/css/style.css')}}">
-    @yield('style')
 </head>
 
 <body>
     <div class="page-wrapper">
-        @include('layouts._header')
+        @include("layout.header")
         @yield('content')
-        @include('layouts._footer')
-
+        @include("layout.footer")
     </div>
+
+
     <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu-overlay"></div>
 
-    @include('layouts._mobile_menu')
+    @include("layout.mobile_menu")
+    
 
     <!-- Sign in / Register Modal -->
     <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -83,8 +79,7 @@
                                             <a href="#" class="forgot-link">Forgot Your Password?</a>
                                         </div><!-- End .form-footer -->
                                     </form>
-
-
+                                    
                                 </div><!-- .End .tab-pane -->
                                 <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
                                     <form action="#">
@@ -110,7 +105,6 @@
                                             </div><!-- End .custom-checkbox -->
                                         </div><!-- End .form-footer -->
                                     </form>
-
                                 </div><!-- .End .tab-pane -->
                             </div><!-- End .tab-content -->
                         </div><!-- End .form-tab -->
@@ -158,7 +152,7 @@
     <script src="{{url('assets/js/superfish.min.js')}}"></script>
     <script src="{{url('assets/js/owl.carousel.min.js')}}"></script>
     <script src="{{url('assets/js/jquery.magnific-popup.min.js')}}"></script>
-    @yield('script')
+    <!-- Main JS File -->
     <script src="{{url('assets/js/main.js')}}"></script>
 </body>
 

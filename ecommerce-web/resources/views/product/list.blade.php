@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('style')
 <link rel="stylesheet" href="{{url('assets/css/plugins/owl-carousel/owl.carousel.css')}}">
-<link rel="stylesheet" href="assets/css/plugins/magnific-popup/magnific-popup.css">
+<link rel="stylesheet" href="{{url('assets/css/plugins/magnific-popup/magnific-popup.css')}}">
 <link rel="stylesheet" href="{{url('assets/css/plugins/nouislider/nouislider.css')}}">
 <style type="text/css">
     .active-color {
@@ -120,7 +120,7 @@
                                 <div class="product product-7 text-center">
                                     <figure class="product-media">
                                         <a href="product.html">
-                                            <img src="{{ url('')}}/assets/images/products/product-10.jpg"
+                                            <img src="{{url('assets/images/products/product-10.jpg')}}"
                                                 alt="Product image" class="product-image">
                                         </a>
 
