@@ -14,7 +14,6 @@ use App\Http\Controllers\Admin\ShippingChargeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController as ProductFront;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -97,9 +96,18 @@ Route::group(['middleware' => 'admin'], function(){
 
 
 Route::get('/', [HomeController::class, 'home']);
+Route::post('auth_register', [AuthController::class, 'auth_register']);
+Route::post('auth_login', [AuthController::class, 'auth_login']);
+Route::get('user_logout', [AuthController::class, 'logout_user']);
+Route::get('activate/{id}', [AuthController::class, 'activate_email']);
+
+Route::get('forgot_password', [AuthController::class, 'forgot_password']);
+Route::post('forgot_password', [AuthController::class, 'auth_forgot_password']);
+Route::get('reset/{token}', [AuthController::class, 'reset']);
+Route::post('reset/{token}', [AuthController::class, 'auth_reset']);
+
+
 Route::post('/get_filter_product_ajax', [ProductFront::class, 'getFilterProductAjax']);
 Route::get('{category?}/{subcategory?} ', [ProductFront::class, 'getCategory']);
-
-
 
 
