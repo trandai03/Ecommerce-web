@@ -42,6 +42,24 @@ class ProductModel extends Model
             $sub_category_id= rtrim(Request::get('sub_category_id'),',');
             $sub_category_id_array = explode(',', $sub_category_id);
             $return = $return->whereIn('product.sub_category_id', $sub_category_id_array);
+        }else{
+            if (!empty(Request::get('old_category_id'))) {
+                $return = $return->where('product.category_id', '=' , Request::get('old_category_id'));
+            }
+            if (!empty(Request::get('old_sub_category_id'))) {
+                $return = $return->where('product.sub_category_id','=' ,  Request::get('old_sub_category_id'));
+            }
+        }
+        if(!empty(Request::get('brand_id'))){
+            $brand_id= rtrim(Request::get('brand_id'),',');
+            $brand_id_array = explode(',', $brand_id);
+            $return = $return->whereIn('product.brand_id', $brand_id_array);
+        }
+        if(!empty(Request::get('start_price')) && !empty(Request::get('end_price'))){
+            $start_price = str_replace('$','',Request::get('start_price'));
+            $end_price = str_replace('$','',Request::get('end_price'));
+            $return = $return->where('product.price', '>=', $start_price);
+            $return = $return->where('product.price', '<=', $end_price);
         }
         if(!empty(Request::get('color_id'))){
             $color_id= rtrim(Request::get('$color_id'),',');
@@ -53,7 +71,7 @@ class ProductModel extends Model
             ->where('product.status', '=', 0)
             ->groupBy('product.id')
             ->orderBy('product.id', 'desc')
-            ->paginate(10);
+            ->paginate(1);
         return $return;
     }
     static public function getImageSingle($product_id)

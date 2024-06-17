@@ -111,3 +111,6 @@ Route::post('/get_filter_product_ajax', [ProductFront::class, 'getFilterProductA
 Route::get('{category?}/{subcategory?} ', [ProductFront::class, 'getCategory']);
 
 
+
+
+

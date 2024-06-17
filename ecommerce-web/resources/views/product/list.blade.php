@@ -45,7 +45,7 @@
                     <div class="toolbox">
                         <div class="toolbox-left">
                             <div class="toolbox-info">
-                                Showing <span>9 of 56</span> Products
+                                Showing <span>{{$getProduct->perPage()}} of {{$getProduct->total()}}</span> Products
                             </div><!-- End .toolbox-info -->
                         </div><!-- End .toolbox-left -->
 
@@ -64,111 +64,25 @@
 
                         </div><!-- End .toolbox-right -->
                     </div><!-- End .toolbox -->
+                    <div id="getProductAjax">
+                        @include('product._list')
+                    </div>
+                    <div style="text-align: center">
+                        <a href="javasript:;" @if(empty($page)) style="display:none;" @endif data-page="{{$page}}" class="btn btn-primary LoadMore"> Load More</a>
 
-                    <div class="products mb-3">
-                        <div class="row justify-content-center">
-                            @foreach($getProduct as $value)
-                                                        @php
-                                                            $getProductImage = $value->getImageSingle($value->id)
-                                                        @endphp
-                                                        {{$getProductImage->image_name}}
-                                                        <div class="col-12 col-md-4 col-lg-4">
-                                                            <div class="product product-7 text-center">
-                                                                <figure class="product-media">
-
-                                                                    <a href="{{$value->slug}}">
-                                                                        @if(!empty($getProductImage) && !empty($getProductImage->getLogo()))
-                                                                            <img style="height: 280px;width: 100%;object-fit: cover;"
-                                                                                src="{{$getProductImage->getLogo()}}" alt="{{$value->title}}"
-                                                                                class="product-image">
-                                                                        @endif
-                                                                    </a>
-
-                                                                    <div class="product-action-vertical">
-                                                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add
-                                                                                to wishlist</span></a>
-
-                                                                    </div><!-- End .product-action-vertical -->
-
-                                                                    <div class="product-action">
-                                                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                                                    </div><!-- End .product-action -->
-                                                                </figure><!-- End .product-media -->
-
-                                                                <div class="product-body">
-                                                                    <div class="product-cat">
-                                                                        <a
-                                                                            href="{{url($value->category_slug . '/' . $value->sub_category_slug)}}">{{$value->sub_category_name}}</a>
-                                                                    </div><!-- End .product-cat -->
-                                                                    <h3 class="product-title"><a href="{{url($value->title)}}"></a></h3>
-                                                                    <!-- End .product-title -->
-                                                                    <div class="product-price">
-                                                                        ${{number_format($value->price, 2)}}
-                                                                    </div><!-- End .product-price -->
-                                                                    <div class="ratings-container">
-                                                                        <div class="ratings">
-                                                                            <div class="ratings-val" style="width: 20%;"></div>
-                                                                            <!-- End .ratings-val -->
-                                                                        </div><!-- End .ratings -->
-                                                                        <span class="ratings-text">( 2 Reviews )</span>
-                                                                    </div><!-- End .rating-container -->
-                                                                </div><!-- End .product-body -->
-                                                            </div><!-- End .product -->
-                                                        </div><!-- End .col-sm-6 col-lg-4 -->
-                            @endforeach
-                            <div class="col-6 col-md-4 col-lg-4">
-                                <div class="product product-7 text-center">
-                                    <figure class="product-media">
-                                        <a href="product.html">
-                                            <img src="{{url('assets/images/products/product-10.jpg')}}"
-                                                alt="Product image" class="product-image">
-                                        </a>
-
-                                        <div class="product-action-vertical">
-                                            <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add
-                                                    to wishlist</span></a>
-                                            <a href="popup/quickView.html" class="btn-product-icon btn-quickview"
-                                                title="Quick view"><span>Quick view</span></a>
-                                            <a href="#" class="btn-product-icon btn-compare"
-                                                title="Compare"><span>Compare</span></a>
-                                        </div><!-- End .product-action-vertical -->
-
-                                        <div class="product-action">
-                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                        </div><!-- End .product-action -->
-                                    </figure><!-- End .product-media -->
-
-                                    <div class="product-body">
-                                        <div class="product-cat">
-                                            <a href="#">Jumpers</a>
-                                        </div><!-- End .product-cat -->
-                                        <h3 class="product-title"><a href="product.html">Yellow button front tea top</a>
-                                        </h3><!-- End .product-title -->
-                                        <div class="product-price">
-                                            $56.00
-                                        </div><!-- End .product-price -->
-                                        <div class="ratings-container">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width: 0%;"></div>
-                                                <!-- End .ratings-val -->
-                                            </div><!-- End .ratings -->
-                                            <span class="ratings-text">( 0 Reviews )</span>
-                                        </div><!-- End .rating-container -->
-                                    </div><!-- End .product-body -->
-                                </div><!-- End .product -->
-                            </div><!-- End .col-sm-6 col-lg-4 -->
-                        </div><!-- End .row -->
-                    </div><!-- End .products -->
-                    {!! $getProduct->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
-
+                    </div>
                 </div><!-- End .col-lg-9 -->
                 <aside class="col-lg-3 order-lg-first">
                     <form id="FilterForm" method="post" action="">
                         {{csrf_field()}}
-                        <input type="text" name="sub_category_id" id="get_sub_category_id">
-                        <input type="text" name="brand_id" id="get_brand_id">
-                        <input type="text" name="color_id" id="get_color_id">
-                        <input type="text" name="sort_by_id" id="get_sort_by_id">
+                        <input type="hidden" name="old_sub_category_id" value="{{!empty($getSubCategory) ? $getSubCategory->id : ''}}">
+                        <input type="hidden" name="old_category_id" value="{{!empty($getCategory) ? $getCategory->id : ''}}" >
+                        <input type="hidden" name="sub_category_id" id="get_sub_category_id">
+                        <input type="hidden" name="brand_id" id="get_brand_id">
+                        <input type="hidden" name="color_id" id="get_color_id">
+                        <input type="hidden" name="sort_by_id" id="get_sort_by_id">
+                        <input type="hidden" name="start_price" id="get_start_price">
+                        <input type="hidden" name="end_price" id="get_end_price">
 
                     </form>
                     <div class="sidebar sidebar-shop">
@@ -204,62 +118,7 @@
                             </div><!-- End .collapse -->
                         </div><!-- End .widget -->
 
-                        <div class="widget widget-collapsible">
-                            <h3 class="widget-title">
-                                <a data-toggle="collapse" href="#widget-2" role="button" aria-expanded="true"
-                                    aria-controls="widget-2">
-                                    Size
-                                </a>
-                            </h3><!-- End .widget-title -->
 
-                            <div class="collapse show" id="widget-2">
-                                <div class="widget-body">
-                                    <div class="filter-items">
-                                        <div class="filter-item">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="size-1">
-                                                <label class="custom-control-label" for="size-1">XS</label>
-                                            </div><!-- End .custom-checkbox -->
-                                        </div><!-- End .filter-item -->
-
-                                        <div class="filter-item">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="size-2">
-                                                <label class="custom-control-label" for="size-2">S</label>
-                                            </div><!-- End .custom-checkbox -->
-                                        </div><!-- End .filter-item -->
-
-                                        <div class="filter-item">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" checked id="size-3">
-                                                <label class="custom-control-label" for="size-3">M</label>
-                                            </div><!-- End .custom-checkbox -->
-                                        </div><!-- End .filter-item -->
-
-                                        <div class="filter-item">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" checked id="size-4">
-                                                <label class="custom-control-label" for="size-4">L</label>
-                                            </div><!-- End .custom-checkbox -->
-                                        </div><!-- End .filter-item -->
-
-                                        <div class="filter-item">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="size-5">
-                                                <label class="custom-control-label" for="size-5">XL</label>
-                                            </div><!-- End .custom-checkbox -->
-                                        </div><!-- End .filter-item -->
-
-                                        <div class="filter-item">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="size-6">
-                                                <label class="custom-control-label" for="size-6">XXL</label>
-                                            </div><!-- End .custom-checkbox -->
-                                        </div><!-- End .filter-item -->
-                                    </div><!-- End .filter-items -->
-                                </div><!-- End .widget-body -->
-                            </div><!-- End .collapse -->
-                        </div><!-- End .widget -->
 
                         <div class="widget widget-collapsible">
                             <h3 class="widget-title">
@@ -402,20 +261,89 @@
         FilterForm();
 
     });
+    var xhr;
     function FilterForm(){
-        var formData = $('#FilterForm').serialize();
-
-        console.log('Form Data:', formData); // Lo
-        $.ajax({
+        if(xhr && xhr.readyState != 4){
+            xhr.abort();
+        }
+        xhr = $.ajax({
             type:"POST",
             url:"{{url('get_filter_product_ajax')}}",
             data: $('#FilterForm').serialize(),
             dataType:"json",
             success:function (data){
+                $('#getProductAjax').html(data.success);
+                $('.LoadMore').attr('data-page',data.page);
+                if(data.page==0){
+                    $('.LoadMore' ).hide();
+                }else{
+                    $('.LoadMore' ).show();
 
+                }
             },
             error:function (data) {
 
+            }
+        });
+    }
+    $('body').delegate('.LoadMore' , 'click',function (){
+        var page = $(this).attr('data-page');
+        $('.LoadMore' ).html('Loading ...');
+        if(xhr && xhr.readyState != 4){
+            xhr.abort();
+        }
+        xhr = $.ajax({
+            type:"POST",
+            url:"{{url('get_filter_product_ajax')}}?page="+page,
+            data: $('#FilterForm').serialize(),
+            dataType:"json",
+            success:function (data){
+                $('#getProductAjax').append(data.success);
+                $('.LoadMore' ).attr('data-page',data.page);
+                $('.LoadMore' ).html('Load More');
+
+                if(data.page==0){
+                    $('.LoadMore' ).hide();
+                }else{
+                    $('.LoadMore' ).show();
+
+                }
+            },
+            error:function (data) {
+
+            }
+        });
+    })
+    var i=0;
+    if ( typeof noUiSlider === 'object' ) {
+        var priceSlider = document.getElementById('price-slider');
+
+
+        noUiSlider.create(priceSlider, {
+            start: [0, 1000],
+            connect: true,
+            step: 1,
+            margin: 1,
+            range: {
+                'min': 0,
+                'max': 1000
+            },
+            tooltips: true,
+            format: wNumb({
+                decimals: 0,
+                prefix: '$'
+            })
+        });
+        priceSlider.noUiSlider.on('update', function( values, handle ){
+            var start_price = values[0];
+            var end_price = values[1];
+            $('#get_start_price').val(start_price);
+            $('#get_end_price').val(end_price);
+            $('#filter-price-range').text(values.join(' - '));
+            if(i==0 || i ==1){
+                i++;
+            }else{
+                FilterForm();
             }
         });
     }
