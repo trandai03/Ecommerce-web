@@ -103,3 +103,4 @@ Route::get('{category?}/{subcategory?} ', [ProductFront::class, 'getCategory']);
 
 
 
+
