@@ -15,8 +15,10 @@
         <div class="container">
             @if(!empty($getSubCategory))
                 <h1 class="page-title">{{$getSubCategory->name}}</h1>
-            @else
+            @elseif(!empty($getCategory))
                 <h1 class="page-title">{{$getCategory->name}}</h1>
+            @else
+                <h1 class="page-title">Search for {{Request::get('q')}}</h1>
             @endif
         </div><!-- End .container -->
     </div><!-- End .page-header -->
@@ -30,7 +32,7 @@
                             href="{{url($getCategory->slug)}}">{{$getCategory->name}}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{$getSubCategory->name}}</li>
 
-                @else
+                @elseif(!empty($getCategory))
                     <li class="breadcrumb-item active" aria-current="page">{{$getCategory->name}}</li>
 
                 @endif
@@ -75,6 +77,7 @@
                 <aside class="col-lg-3 order-lg-first">
                     <form id="FilterForm" method="post" action="">
                         {{csrf_field()}}
+                        <input type="hidden" name="q" value="{{ !empty(Request::get('q')) ? Request::get('q') : '' }}">
                         <input type="hidden" name="old_sub_category_id" value="{{!empty($getSubCategory) ? $getSubCategory->id : ''}}">
                         <input type="hidden" name="old_category_id" value="{{!empty($getCategory) ? $getCategory->id : ''}}" >
                         <input type="hidden" name="sub_category_id" id="get_sub_category_id">
@@ -90,7 +93,8 @@
                             <label>Filters:</label>
                             <a href="#" class="sidebar-filter-clear">Clean All</a>
                         </div><!-- End .widget widget-clean -->
-
+                        
+                        @if(!empty($getSubCategoryFilter))
                         <div class="widget widget-collapsible">
                             <h3 class="widget-title">
                                 <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true"
@@ -117,8 +121,7 @@
                                 </div><!-- End .widget-body -->
                             </div><!-- End .collapse -->
                         </div><!-- End .widget -->
-
-
+                        @endif
 
                         <div class="widget widget-collapsible">
                             <h3 class="widget-title">

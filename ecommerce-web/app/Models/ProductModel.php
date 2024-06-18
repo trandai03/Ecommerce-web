@@ -77,6 +77,9 @@ class ProductModel extends Model
             $return = $return->join('product_color', 'product_color.product_id', '=', 'product.id');
             $return = $return->whereIn('product_color.color_id', $color_id_array);
         }
+        if(!empty(Request::get('q'))){
+            $return = $return->where('product.title', 'like', '%'.Request::get('q').'%');
+        }
         $return = $return->where('product.is_delete', '=', 0)
             ->where('product.status', '=', 0)
             ->groupBy('product.id')
