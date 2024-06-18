@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Request;
+use Illuminate\Http\Request as HttpRequest;
+use Illuminate\Support\Facades\Request;
 class ProductModel extends Model
 {
     use HasFactory;
@@ -14,6 +16,14 @@ class ProductModel extends Model
     {
         return self::find($id);
     }
+
+    static public function getSingleSlug($slug){
+        return self::where('slug', '=', $slug)
+                ->where('product.is_delete', '=', 0)
+                ->where('product.status', '=', 0)
+                ->first();
+    }
+
     static public function checkSlug($slug)
     {
         return self::where('slug', '=', $slug)->count();
@@ -71,13 +81,38 @@ class ProductModel extends Model
             ->where('product.status', '=', 0)
             ->groupBy('product.id')
             ->orderBy('product.id', 'desc')
-            ->paginate(1);
+            ->paginate(10);
         return $return;
     }
+
+    static public function getRelatedProduct($product_id, $sub_category_id){
+        $return = ProductModel::select(
+            'product.*',
+            'users.name as created_by_name',
+            'sub_category.name as sub_category_name',
+            'sub_category.slug as sub_category_slug',
+            'category.name as category_name',
+            'category.slug as category_slug'
+        )
+            ->join('users', 'users.id', '=', 'product.created_by')
+            ->join('category', 'category.id', '=', 'product.category_id')
+            ->join('sub_category', 'sub_category.id', '=', 'product.sub_category_id')
+            ->where('product.id', '!=', $product_id)
+            ->where('product.sub_category_id', '=', $sub_category_id)
+            ->where('product.is_delete', '=', 0)
+            ->where('product.status', '=', 0)
+            ->groupBy('product.id')
+            ->orderBy('product.id', 'desc')
+            ->limit(10)
+            ->get();
+        return $return;
+    }
+
     static public function getImageSingle($product_id)
     {
         return ProductImageModel::where('product_id', '=' , $product_id)->orderBy('order_by', 'asc')->first();
     }
+    
     static public function getRecord()
     {
         return self::select('product.*', 'users.name as created_by_name')
@@ -99,5 +134,13 @@ class ProductModel extends Model
 
     public function getImage(){
         return $this->hasMany(ProductImageModel::class, "product_id")->orderBy('order_by', 'asc');
+    }
+
+    public function getCategory(){
+        return $this->belongsTo(CategoryModel::class, 'category_id');
+    }
+
+    public function getSubCategory(){
+        return $this->belongsTo(SubCategoryModel::class, 'sub_category_id');
     }
 }

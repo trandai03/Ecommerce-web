@@ -70,6 +70,14 @@ class ProductController extends Controller
         if(!empty($product)){
             $product->title = trim($request->title);
             $product->sku = trim($request->sku);
+            $slug = Str::slug($request->title, "-");
+            $checkSlug = ProductModel::checkSlug($slug);
+            if (empty($checkSlug)) {
+                $product->slug = $slug;
+            } else {
+                $new_slug = $slug . '-' . $product_id;
+                $product->slug = $new_slug;
+            }
             $product->category_id = trim($request->category_id);
             $product->sub_category_id = trim($request->sub_category_id);
             $product->brand_id = trim($request->brand_id);
