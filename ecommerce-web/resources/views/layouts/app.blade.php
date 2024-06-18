@@ -206,6 +206,22 @@
                 }
             });
         });
+
+        $('body').delegate('.add_to_wishlist', 'click', function(e) {
+            var product_id = $(this).attr('id');
+            $.ajax({
+                type: "POST",
+                url: "{{ url('add_to_wishlist') }}",
+                data: {
+                    "_token": "{{ csrf_token()}}",
+                    product_id: product_id,
+                },
+                dataType: "json",
+                success: function(data) {
+                    
+                },
+            });
+        });
     </script>
 </body>
 
