@@ -11,9 +11,12 @@ use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\DiscountCodeController;
 use App\Http\Controllers\Admin\ShippingChargeController;
+use App\Http\Controllers\Admin\SliderController;
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController as ProductFront;
 use App\Http\Controllers\PaymentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -93,6 +96,15 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/shipping_charge/edit/{id}', [ShippingChargeController::class, 'edit']);
     Route::post('admin/shipping_charge/edit/{id}', [ShippingChargeController::class, 'update']);
     Route::get('admin/shipping_charge/delete/{id}', [ShippingChargeController::class, 'delete']);
+
+    Route::get('admin/slider/list', [SliderController::class, 'list']);
+    Route::get('admin/slider/add', [SliderController::class, 'add']);
+    Route::post('admin/slider/add', [SliderController::class, 'insert']);
+    Route::get('admin/slider/edit/{id}', [SliderController::class, 'edit']);
+    Route::post('admin/slider/edit/{id}', [SliderController::class, 'update']);
+    Route::get('admin/slider/delete/{id}', [SliderController::class, 'delete']);
+
+
 });
 
 
