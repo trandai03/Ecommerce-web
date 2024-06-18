@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\DiscountCodeController;
 use App\Http\Controllers\Admin\ShippingChargeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController as ProductFront;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,6 +97,11 @@ Route::group(['middleware' => 'admin'], function(){
 
 
 Route::get('/', [HomeController::class, 'home']);
+Route::post('product/add-to-cart', [PaymentController::class, 'add_to_cart']);
+Route::get('cart', [PaymentController::class, 'cart']);
+Route::get('cart/delete/{id}', [PaymentController::class, 'cart_delete']);
+Route::post('update_cart', [PaymentController::class, 'update_cart']);
+
 //Login and Signup User
 Route::post('auth_register', [AuthController::class, 'auth_register']);
 Route::post('auth_login', [AuthController::class, 'auth_login']);
