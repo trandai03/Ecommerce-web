@@ -74,7 +74,7 @@ class ProductModel extends Model
         if(!empty(Request::get('color_id'))){
             $color_id= rtrim(Request::get('$color_id'),',');
             $color_id_array = explode(',', $color_id);
-            $return = $return->join('product_color', 'product_color.product_id', '=', 'product.id');
+            $return = $return->join('product', 'product_color.product_id', '=', 'product.id');
             $return = $return->whereIn('product_color.color_id', $color_id_array);
         }
         if(!empty(Request::get('q'))){
@@ -115,7 +115,7 @@ class ProductModel extends Model
     {
         return ProductImageModel::where('product_id', '=' , $product_id)->orderBy('order_by', 'asc')->first();
     }
-    
+
     static public function getRecord()
     {
         return self::select('product.*', 'users.name as created_by_name')

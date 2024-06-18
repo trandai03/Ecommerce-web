@@ -93,7 +93,7 @@
                             <label>Filters:</label>
                             <a href="#" class="sidebar-filter-clear">Clean All</a>
                         </div><!-- End .widget widget-clean -->
-                        
+
                         @if(!empty($getSubCategoryFilter))
                         <div class="widget widget-collapsible">
                             <h3 class="widget-title">
@@ -247,16 +247,13 @@
             $(this).addClass('active-color')
         } else {
             $(this).attr('data-val', 0);
-
             $(this).removeClass('active-color')
         }
         var ids = '';
         $('.ChangeColor').each(function () {
             var status = $(this).attr('data-val');
-
             if (status == 1) {
                 var id = $(this).attr('id');
-
                 ids += id + ',';
             }
         });
