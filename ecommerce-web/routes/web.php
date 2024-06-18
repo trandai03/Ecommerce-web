@@ -102,10 +102,14 @@ Route::group(['middleware' => 'admin'], function(){
 
 
 Route::get('/', [HomeController::class, 'home']);
+//Cart
 Route::post('product/add-to-cart', [PaymentController::class, 'add_to_cart']);
 Route::get('cart', [PaymentController::class, 'cart']);
 Route::get('cart/delete/{id}', [PaymentController::class, 'cart_delete']);
 Route::post('update_cart', [PaymentController::class, 'update_cart']);
+//Checkout
+Route::get('checkout', [PaymentController::class, 'checkout']);
+Route::post('checkout/apply_discount_code', [PaymentController::class, 'apply_discount_code']);
 
 //Login and Signup User
 Route::post('auth_register', [AuthController::class, 'auth_register']);
