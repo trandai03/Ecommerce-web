@@ -105,8 +105,11 @@
                             <div class="product-details-action">
                                 <button type="submit" class="btn-product btn-cart">add to cart</button>
                                 <div class="details-action-wrapper">
-                                    <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
-                                    <!-- <a href="#" class="btn-product btn-compare" title="Compare"><span>Add to Compare</span></a> -->
+                                    @if(!empty(Auth::check()))
+                                        <a href="javascript:;" id="{{$getProduct->id}}" class="add_to_wishlist btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
+                                    @else
+                                        <a href="#signin-modal" data-toggle="modal" class="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
+                                    @endif
                                 </div><!-- End .details-action-wrapper -->
                             </div><!-- End .product-details-action -->
                             </form>

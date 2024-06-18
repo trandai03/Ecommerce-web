@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\Admin\SliderController;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController as ProductFront;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentController;
 
 
@@ -33,7 +35,9 @@ Route::get('admin', [AuthController::class, 'login_admin']);
 Route::post('admin', [AuthController::class, 'auth_login_admin']);
 Route::get('admin/logout', [AuthController::class, 'logout_admin']);
 
-
+Route::group(['middleware' => 'user'], function(){
+    Route::get('user/dashboard', [UserController::class, 'dashboard']);
+});
 
 Route::group(['middleware' => 'admin'], function(){
 
@@ -109,10 +113,14 @@ Route::group(['middleware' => 'admin'], function(){
 
 
 Route::get('/', [HomeController::class, 'home']);
+//Cart
 Route::post('product/add-to-cart', [PaymentController::class, 'add_to_cart']);
 Route::get('cart', [PaymentController::class, 'cart']);
 Route::get('cart/delete/{id}', [PaymentController::class, 'cart_delete']);
 Route::post('update_cart', [PaymentController::class, 'update_cart']);
+//Checkout
+Route::get('checkout', [PaymentController::class, 'checkout']);
+Route::post('checkout/apply_discount_code', [PaymentController::class, 'apply_discount_code']);
 
 //Login and Signup User
 Route::post('auth_register', [AuthController::class, 'auth_register']);

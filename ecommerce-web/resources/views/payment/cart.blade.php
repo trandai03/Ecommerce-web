@@ -12,8 +12,8 @@
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('')}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('')}}">Shop</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
                 </ol>
             </div><!-- End .container -->
@@ -45,26 +45,26 @@
                                     @endphp
                                     @if(!empty($getCartProduct))
                                         @php
-                                            $getProdcuctImage= $getCartProduct->getImageSingle($getCartProduct->id);
+                                            $getProductImage= $getCartProduct->getImageSingle($getCartProduct->id);
                                         @endphp
                                     <tr>
                                     <td class="product-col">
                                         <div class="product">
                                             <figure class="product-media">
-                                                <a href="{{$getProdcuctImage->slug}}">
-                                                    <img src="{{$getProdcuctImage->getLogo()}}" alt="Product image">
+                                                <a href="{{$getProductImage->slug}}">
+                                                    <img src="{{$getProductImage->getLogo()}}" alt="Product image">
                                                 </a>
                                             </figure>
 
                                             <h3 class="product-title">
-                                                <a href="#">{{$getProdcuctImage->title}}</a>
+                                                <a href="#">{{$getProductImage->title}}</a>
                                             </h3><!-- End .product-title -->
                                         </div><!-- End .product -->
                                     </td>
                                     <td class="price-col">{{number_format($cart->price,2)}}</td>
                                     <td class="quantity-col">
                                         <div class="cart-product-quantity">
-                                            <input type="number" class="form-control" value="{{$cart->quantity}}" min="1" max="100" name="cart[{{$key}}][qty]" step="1" data-decimals="0" required>
+                                            <input type="number" id="quantityProduct" class="form-control" value="{{$cart->quantity}}" min="1" max="100" name="cart[{{$key}}][qty]" step="1" data-decimals="0" required>
                                             <input type="hidden"  value="{{$cart->id}}"  name="cart[{{$key}}][id]" >
 
                                         </div><!-- End .cart-product-quantity -->
@@ -79,16 +79,7 @@
                             </table><!-- End .table table-wishlist -->
 
                             <div class="cart-bottom">
-                                <div class="cart-discount">
-
-                                        <div class="input-group">
-                                            <input type="text" class="form-control"  placeholder="coupon code">
-                                            <div class="input-group-append">
-                                                <button type="submit" class="btn btn-outline-primary-2" type="submit"><i class="icon-long-arrow-right"></i></button>
-                                            </div><!-- .End .input-group-append -->
-                                        </div><!-- End .input-group -->
-
-                                </div><!-- End .cart-discount -->
+                                
 
                                 <button href="#" type="submit" class="btn btn-outline-dark-2"><span>UPDATE CART</span><i class="icon-refresh"></i></button>
                             </div><!-- End .cart-bottom -->
@@ -104,43 +95,7 @@
                                         <td>Subtotal:</td>
                                         <td>${{number_format(Cart::getSubTotal(),2)}}</td>
                                     </tr><!-- End .summary-subtotal -->
-                                    <tr class="summary-shipping">
-                                        <td>Shipping:</td>
-                                        <td>&nbsp;</td>
-                                    </tr>
-
-                                    <tr class="summary-shipping-row">
-                                        <td>
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="free-shipping" name="shipping" class="custom-control-input">
-                                                <label class="custom-control-label" for="free-shipping">Free Shipping</label>
-                                            </div><!-- End .custom-control -->
-                                        </td>
-                                        <td>$0.00</td>
-                                    </tr><!-- End .summary-shipping-row -->
-
-                                    <tr class="summary-shipping-row">
-                                        <td>
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="standart-shipping" name="shipping" class="custom-control-input">
-                                                <label class="custom-control-label" for="standart-shipping">Standart:</label>
-                                            </div><!-- End .custom-control -->
-                                        </td>
-                                        <td>$0.00</td>
-                                    </tr><!-- End .summary-shipping-row -->
-
-                                    <tr class="summary-shipping-row">
-                                        <td>
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="express-shipping" name="shipping" class="custom-control-input">
-                                                <label class="custom-control-label" for="express-shipping">Express:</label>
-                                            </div><!-- End .custom-control -->
-                                        </td>
-                                        <td>$0.00</td>
-                                    </tr><!-- End .summary-shipping-row -->
-
-
-
+                                    
                                     <tr class="summary-total">
                                         <td>Total:</td>
                                         <td>${{number_format(Cart::getSubTotal(),2)}}</td>
@@ -148,7 +103,7 @@
                                     </tbody>
                                 </table><!-- End .table table-summary -->
 
-                                <a href="checkout.html" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
+                                <a href="{{url('checkout')}}" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
                             </div><!-- End .summary -->
 
                             <a href="{{url('')}}" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
@@ -161,6 +116,5 @@
             </div><!-- End .cart -->
         </div><!-- End .page-content -->
     </main><!-- End .main -->
-
 @endsection
 
