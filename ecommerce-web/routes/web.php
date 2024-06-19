@@ -129,7 +129,7 @@ Route::post('update_cart', [PaymentController::class, 'update_cart']);
 Route::get('checkout', [PaymentController::class, 'checkout']);
 Route::post('checkout/apply_discount_code', [PaymentController::class, 'apply_discount_code']);
 Route::post('checkout/place_order', [PaymentController::class, 'place_order']);
-
+Route::get('checkout/payment', [PaymentController::class, 'checkout_payment']);
 //Login and Signup User
 Route::post('auth_register', [AuthController::class, 'auth_register']);
 Route::post('auth_login', [AuthController::class, 'auth_login']);
