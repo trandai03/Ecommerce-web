@@ -22,6 +22,7 @@
         <div class="page-content">
             <div class="cart">
                 <div class="container">
+                    @include('layouts._message')
                     @if(!empty(Cart::getContent()->count()))
                     <div class="row">
                         <div class="col-lg-9">
@@ -69,7 +70,7 @@
 
                                         </div><!-- End .cart-product-quantity -->
                                     </td>
-                                    <td class="total-col">${{number_format($cart->price,2)}}</td>
+                                    <td class="total-col">${{number_format($cart->price * $cart->quantity,2)}}</td>
                                     <td class="remove-col"><a href="{{url('cart/delete/'.$cart->id)}}" class="btn-remove"><i class="icon-close"></i></a></td>
                                 </tr>
                                     @endif
