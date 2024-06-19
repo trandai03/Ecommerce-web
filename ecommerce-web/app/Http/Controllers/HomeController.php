@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoryModel;
+use App\Models\ProductModel;
 use Illuminate\Http\Request;
 use App\Models\SliderModel;
 use App\Models\PartnerModel;
@@ -13,6 +14,7 @@ class HomeController extends Controller
         $data['getSlider'] = SliderModel::getRecordActive();
         $data['getPartner'] = PartnerModel::getRecordActive();
         $data['getCategory'] = CategoryModel::getRecordActiveHome();
+        $data['getProductTrendy'] = ProductModel::getProductTrendy();
 
         $data['meta_title']='E-commerce';
         $data['meta_keyword']='';

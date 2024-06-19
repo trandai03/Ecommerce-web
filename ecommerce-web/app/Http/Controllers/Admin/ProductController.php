@@ -81,6 +81,8 @@ class ProductController extends Controller
             $product->category_id = trim($request->category_id);
             $product->sub_category_id = trim($request->sub_category_id);
             $product->brand_id = trim($request->brand_id);
+            $product->is_trendy = trim($request->is_trendy) ? 1 : 0;
+
             $product->price = trim($request->price);
             $product->old_price = trim($request->old_price);
             $product->short_description = trim($request->short_description);
@@ -128,7 +130,7 @@ class ProductController extends Controller
                         $imageupload->save();
                     }
                 }
-            }   
+            }
 
             return redirect()->back()->with('success', "Product successfully updated");
         }

@@ -17,9 +17,6 @@
                         <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add
                                 to wishlist</span></a>
                     </div>
-                    <div class="product-action">
-                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                    </div>
                 </figure>
                 <div class="product-body">
                     <div class="product-cat">

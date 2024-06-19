@@ -111,6 +111,28 @@ class ProductModel extends Model
         return $return;
     }
 
+    static public function getProductTrendy(){
+        $return = ProductModel::select(
+            'product.*',
+            'users.name as created_by_name',
+            'sub_category.name as sub_category_name',
+            'sub_category.slug as sub_category_slug',
+            'category.name as category_name',
+            'category.slug as category_slug'
+        )
+            ->join('users', 'users.id', '=', 'product.created_by')
+            ->join('category', 'category.id', '=', 'product.category_id')
+            ->join('sub_category', 'sub_category.id', '=', 'product.sub_category_id')
+            ->where('product.is_trendy', '=', 1)
+            ->where('product.is_delete', '=', 0)
+            ->where('product.status', '=', 0)
+            ->groupBy('product.id')
+            ->orderBy('product.id', 'desc')
+            ->limit(10)
+            ->get();
+        return $return;
+    }
+
     static public function getImageSingle($product_id)
     {
         return ProductImageModel::where('product_id', '=' , $product_id)->orderBy('order_by', 'asc')->first();
