@@ -34,13 +34,17 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+
                                         <th>Name</th>
+                                        <th>Image</th>
+
                                         <th>Slug</th>
                                         <th>Meta Title</th>
                                         <th>Meta Description</th>
                                         <th>Meta Keywords</th>
                                         <th>Created By</th>
                                         <th>Status</th>
+                                        <th>Home Screen</th>
                                         <th>Created Date</th>
                                         <th>Action</th>
 
@@ -52,12 +56,18 @@
 
                                         <td>{{$value->id}}</td>
                                         <td>{{$value->name}}</td>
+                                        <td>
+                                            @if(!empty($value->getImage()))
+                                                <img src="{{$value->getImage()}}" style="height: 100px;">
+                                            @endif
+                                        </td>
                                         <td>{{$value->slug}}</td>
                                         <td>{{$value->meta_title}}</td>
                                         <td>{{$value->meta_description}}</td>
                                         <td>{{$value->meta_keywords}}</td>
                                         <td>{{$value->created_by_name}}</td>
                                         <td>{{($value->status == 0) ? 'Active' : 'Inactive' }}</td>
+                                        <td>{{($value->is_home == 1) ? 'Yes' : 'No' }}</td>
                                         <td>{{ date('d-m-Y', strtotime($value->created_at))}}</td>
                                         <td>
                                             <a href="{{url('admin/category/edit/'.$value->id)}}" class="btn btn-primary">Edit </a>

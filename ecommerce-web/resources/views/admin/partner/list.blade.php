@@ -9,10 +9,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Slider List</h1>
+                        <h1>Partner List</h1>
                     </div>
                     <div class="col-sm-6" style="text-align: right;">
-                        <a href="{{url('admin/slider/add')}}" class="btn btn-primary">Add New Slider</a>
+                        <a href="{{url('admin/partner/add')}}" class="btn btn-primary">Add New Partner</a>
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Slider List</h3>
+                                <h3 class="card-title">Partner List</h3>
                             </div>
                             <div class="card-body p-0">
                                 <table class="table table-striped">
@@ -35,8 +35,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Image</th>
-                                        <th>Title</th>
-                                        <th>Button Name</th>
+
                                         <th>Button Link</th>
 
                                         <th>Status</th>
@@ -62,8 +61,8 @@
                                             <td>{{($value->status == 0) ? 'Active' : 'Inactive' }}</td>
                                             <td>{{ date('d-m-Y', strtotime($value->created_at))}}</td>
                                             <td>
-                                                <a href="{{url('admin/slider/edit/'.$value->id)}}" class="btn btn-primary">Edit </a>
-                                                <a onclick="return confirm('Are you want to delete?');" href="{{url('admin/slider/delete/'.$value->id)}}" class="btn btn-danger">Delete </a>
+                                                <a href="{{url('admin/partner/edit/'.$value->id)}}" class="btn btn-primary">Edit </a>
+                                                <a onclick="return confirm('Are you want to delete?');" href="{{url('admin/partner/delete/'.$value->id)}}" class="btn btn-danger">Delete </a>
                                             </td>
                                             @endforeach
                                         </tr>

@@ -20,6 +20,13 @@ class SliderModel extends Model
             ->orderBy('slider.id', 'desc')
             ->paginate(20);
     }
+    static public function getRecordActive(){
+        return self::select('slider.*')
+            ->where('slider.is_delete', '=', 0)
+            ->where('slider.status', '=', 0)
+            ->orderBy('slider.id', 'desc')
+            ->get();
+    }
     public function getImage(){
         if(!empty($this->image_name) && file_exists('upload/slider/'.$this->image_name)){
             return url('upload/slider/'.$this->image_name);
