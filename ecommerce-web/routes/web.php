@@ -121,6 +121,7 @@ Route::post('update_cart', [PaymentController::class, 'update_cart']);
 //Checkout
 Route::get('checkout', [PaymentController::class, 'checkout']);
 Route::post('checkout/apply_discount_code', [PaymentController::class, 'apply_discount_code']);
+Route::post('checkout/place_order', [PaymentController::class, 'place_order']);
 
 //Login and Signup User
 Route::post('auth_register', [AuthController::class, 'auth_register']);
@@ -132,7 +133,7 @@ Route::get('forgot_password', [AuthController::class, 'forgot_password']);
 Route::post('forgot_password', [AuthController::class, 'auth_forgot_password']);
 Route::get('reset/{token}', [AuthController::class, 'reset']);
 Route::post('reset/{token}', [AuthController::class, 'auth_reset']);
-
+//
 Route::get('search', [ProductFront::class, 'getProductSearch']);
 Route::post('/get_filter_product_ajax', [ProductFront::class, 'getFilterProductAjax']);
 Route::get('{category?}/{subcategory?} ', [ProductFront::class, 'getCategory']);
