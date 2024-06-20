@@ -39,6 +39,10 @@ Route::get('admin/logout', [AuthController::class, 'logout_admin']);
 
 Route::group(['middleware' => 'user'], function(){
     Route::get('user/dashboard', [UserController::class, 'dashboard']);
+    Route::get('user/orders', [UserController::class, 'orders']);
+    Route::get('user/edit-profile', [UserController::class, 'edit_profile']);
+    Route::get('user/change-password', [UserController::class, 'change_password']);
+
 });
 
 Route::group(['middleware' => 'admin'], function(){
@@ -53,7 +57,7 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete']);
     //customer
     Route::get('admin/customer/list', [AdminController::class, 'customer_list']);
-    
+
     //category
     Route::get('admin/category/list', [CategoryController::class, 'list']);
     Route::get('admin/category/add', [CategoryController::class, 'add']);
