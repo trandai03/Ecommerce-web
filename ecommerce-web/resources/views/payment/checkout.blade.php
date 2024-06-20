@@ -45,9 +45,9 @@
                             <label>Country *</label>
                             <input type="text" name="country" class="form-control" required>
 
-                            <label>Street address *</label>
-                            <input type="text" name="address_one" class="form-control" placeholder="House number and Street name" required>
-                            <input type="text" name="address_two" class="form-control" placeholder="Appartments, suite, unit etc ..." required>
+                            <label>Address *</label>
+                            <input type="text" name="address_one" class="form-control" placeholder="" required>
+                            <!-- <input type="text" name="address_two" class="form-control" placeholder="Appartments, suite, unit etc ..." required> -->
 
                             <div class="row">
                                 <div class="col-sm-6">
@@ -55,10 +55,10 @@
                                     <input type="text" name="city" class="form-control" required>
                                 </div><!-- End .col-sm-6 -->
 
-                                <div class="col-sm-6">
+                                <!-- <div class="col-sm-6">
                                     <label>State *</label>
                                     <input type="text" name="state" class="form-control" required>
-                                </div><!-- End .col-sm-6 -->
+                                </div> -->
                             </div><!-- End .row -->
 
                             <div class="row">
