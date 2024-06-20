@@ -21,6 +21,11 @@
     <link rel="stylesheet" href="{{url('assets/css/plugins/magnific-popup/magnific-popup.css')}}">
     <link rel="stylesheet" href="{{url('assets/css/style.css')}}">
     @yield('style')
+    <style type="text/css">
+        .btn-wishlist-add::before {
+            content: '\f233' !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -177,8 +182,7 @@
                 success: function(data) {
                     if (data.status == true) {
                         location.reload();
-                    }
-                    else{
+                    } else {
                         alert(data.message);
                     }
                 },
@@ -187,7 +191,7 @@
                 }
             });
         });
-        
+
         $('body').delegate('#SubmitFormRegister', 'submit', function(e) {
             e.preventDefault();
             $.ajax({
@@ -218,7 +222,11 @@
                 },
                 dataType: "json",
                 success: function(data) {
-                    
+                    if (data.is_wishlist == 0) {
+                        $('.add_to_wishlist' + product_id).removeClass('btn-wishlist-add');
+                    } else {
+                        $('.add_to_wishlist' + product_id).addClass('btn-wishlist-add');
+                    }
                 },
             });
         });
