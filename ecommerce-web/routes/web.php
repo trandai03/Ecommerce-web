@@ -51,6 +51,9 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/admin/edit/{id}', [AdminController::class, 'edit']);
     Route::post('admin/admin/edit/{id}', [AdminController::class, 'update']);
     Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete']);
+    //customer
+    Route::get('admin/customer/list', [AdminController::class, 'customer_list']);
+    
     //category
     Route::get('admin/category/list', [CategoryController::class, 'list']);
     Route::get('admin/category/add', [CategoryController::class, 'add']);
@@ -103,12 +106,9 @@ Route::group(['middleware' => 'admin'], function(){
     Route::post('admin/shipping_charge/edit/{id}', [ShippingChargeController::class, 'update']);
     Route::get('admin/shipping_charge/delete/{id}', [ShippingChargeController::class, 'delete']);
     //Orders
-    Route::get('admin/orders/list', [OrderController::class, 'list']);
-    Route::get('admin/orders/add', [OrderController::class, 'add']);
-    Route::post('admin/orders/add', [OrderController::class, 'insert']);
-    Route::get('admin/orders/edit/{id}', [OrderController::class, 'edit']);
-    Route::post('admin/orders/edit/{id}', [OrderController::class, 'update']);
-    Route::get('admin/orders/delete/{id}', [OrderController::class, 'delete']);
+    Route::get('admin/order/list', [OrderController::class, 'list']);
+    Route::get('admin/order/detail/{id}', [OrderController::class, 'order_detail']);
+    Route::get('admin/order_status', [OrderController::class, 'order_status']);
     //Slider
     Route::get('admin/slider/list', [SliderController::class, 'list']);
     Route::get('admin/slider/add', [SliderController::class, 'add']);

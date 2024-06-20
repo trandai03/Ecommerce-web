@@ -123,7 +123,7 @@ class ProductModel extends Model
             ->join('users', 'users.id', '=', 'product.created_by')
             ->join('category', 'category.id', '=', 'product.category_id')
             ->join('sub_category', 'sub_category.id', '=', 'product.sub_category_id')
-            ->where('product.is_trendy', '=', 1)
+            // ->where('product.is_trendy', '=', 1)
             ->where('product.is_delete', '=', 0)
             ->where('product.status', '=', 0)
             ->groupBy('product.id')
