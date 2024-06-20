@@ -31,7 +31,7 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="box-btn" style="margin-bottom: 20px;">
-                                            <div style="font-size: 20px; font-weight: bold;">5</div>
+                                            <div style="font-size: 20px; font-weight: bold;">{{$TotalOrder}}</div>
 
                                             <div style="font-size: 16px;">Total Order</div>
                                         </div>
@@ -40,7 +40,7 @@
 
                                     <div class="col-md-3" style="margin-bottom: 20px;">
                                         <div class="box-btn">
-                                            <div style="font-size: 20px; font-weight: bold;">5</div>
+                                            <div style="font-size: 20px; font-weight: bold;">{{$TotalTodayOrder}}</div>
 
                                             <div style="font-size: 16px;">Today Order</div>
                                         </div>
@@ -48,7 +48,7 @@
 
                                     <div class="col-md-3" style="margin-bottom: 20px;">
                                         <div class="box-btn">
-                                            <div style="font-size: 20px; font-weight: bold;">5</div>
+                                            <div style="font-size: 20px; font-weight: bold;">{{number_format($TotalAmount,2)}}</div>
 
                                             <div style="font-size: 16px;">Total  Amount</div>
                                         </div>
@@ -56,7 +56,7 @@
 
                                     <div class="col-md-3" style="margin-bottom: 20px;">
                                         <div class="box-btn">
-                                            <div style="font-size: 20px; font-weight: bold;">5</div>
+                                            <div style="font-size: 20px; font-weight: bold;">{{number_format($TotalTodayAmount,2)}}</div>
 
                                             <div style="font-size: 16px;">Today Amount</div>
                                         </div>
@@ -64,7 +64,7 @@
 
                                     <div class="col-md-3" style="margin-bottom: 20px;">
                                         <div class="box-btn">
-                                            <div style="font-size: 20px; font-weight: bold;">5</div>
+                                            <div style="font-size: 20px; font-weight: bold;">{{$TotalPending}}</div>
 
                                             <div style="font-size: 16px;">Pending Order</div>
                                         </div>
@@ -72,7 +72,7 @@
 
                                     <div class="col-md-3" style="margin-bottom: 20px;">
                                         <div class="box-btn">
-                                            <div style="font-size: 20px; font-weight: bold;">5</div>
+                                            <div style="font-size: 20px; font-weight: bold;">{{$TotalInProgree}}</div>
 
                                             <div style="font-size: 16px;">In Progree Order</div>
                                         </div>
@@ -80,7 +80,7 @@
 
                                     <div class="col-md-3" style="margin-bottom: 20px;">
                                         <div class="box-btn">
-                                            <div style="font-size: 20px; font-weight: bold;">5</div>
+                                            <div style="font-size: 20px; font-weight: bold;">{{$TotalCompleted}}</div>
 
                                             <div style="font-size: 16px;">Completed Orders</div>
                                         </div>
@@ -88,7 +88,7 @@
 
                                     <div class="col-md-3" style="margin-bottom: 20px;">
                                         <div class="box-btn">
-                                            <div style="font-size: 20px; font-weight: bold;">5</div>
+                                            <div style="font-size: 20px; font-weight: bold;">{{$TotalCanceled}}</div>
 
                                             <div style="font-size: 16px;">Canceled Orders</div>
                                         </div>
