@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 use Auth;
 use App\Models\OrderModel;
+use App\Models\User;
+use Hash;
 use Illuminate\Http\Request;
+
 
 
 class UserController extends Controller
@@ -32,11 +35,40 @@ class UserController extends Controller
         $data['meta_keywords'] = '';
         return view('user.orders', $data);
     }
+    public function orders_detail($id)
+    {
+        $data['getRecord'] = OrderModel::getSingleUser(Auth::user()->id,$id);
+        if(!empty($data['getRecord'])){
+            $data['meta_title'] = 'Orders Detail';
+            $data['meta_description'] = '';
+            $data['meta_keywords'] = '';
+            return view('user.orders_detail', $data);
+        }else{
+            abort(404);
+        }
 
+
+    }
+    public function update_profile(Request $request)
+    {
+        $user = User::getSingle(Auth::user()->id);
+        $user->name = trim($request->first_name);
+        $user->last_name = trim($request->last_name);
+        $user->company_name = trim($request->company_name);
+        $user->country = trim($request->country);
+        $user->address_one = trim($request->address_one);
+        //$user->address_two = trim($request->address_two);
+        $user->city = trim($request->city);
+        $user->postcode = trim($request->postcode);
+        $user->phone = trim($request->phone);
+        $user->save();
+        return redirect()->back()->with('success', 'Profile updated successfully');
+    }
     public function edit_profile(){
         $data['meta_title'] = 'Edit Profile';
         $data['meta_description'] = '';
         $data['meta_keywords'] = '';
+        $data['getRecord'] = User::getSingle(Auth::user()->id);
         return view('user.edit_profile', $data);
     }
     public function change_password(){
@@ -44,6 +76,22 @@ class UserController extends Controller
         $data['meta_description'] = '';
         $data['meta_keywords'] = '';
         return view('user.change_password', $data);
+    }
+
+    public function update_password(Request $request)
+    {
+        $user = User::getSingle(Auth::user()->id);
+        if(Hash::check($request->old_password, $user->password)){
+            if($request->password == $request->cpassword){
+                $user->password = Hash::make($request->password);
+                $user->save();
+                return redirect()->back()->with('success', 'Password updated successfully');
+            }else{
+                return redirect()->back()->with('error', ' New Password and Confirm Password did not match');
+            }
+        }else{
+            return redirect()->back()->with('error', 'Old password is incorrect');
+        }
     }
 
 }
