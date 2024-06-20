@@ -86,4 +86,19 @@ class User extends Authenticatable
             ->where('email','=',$email)
             ->first();
     }
+
+    static public function getTotalCustomer(){
+        return self::select('id')
+                ->where('is_admin', '=', 0)
+                ->where('is_deleted', '=', 0)
+                ->count();
+    }
+
+    static public function getTotalTodayCustomer(){
+        return self::select('id')
+                ->where('is_admin', '=', 0)
+                ->where('is_deleted', '=', 0)
+                ->whereDate('created_at', '=', date('Y-m-d'))
+                ->count();
+    }
 }
