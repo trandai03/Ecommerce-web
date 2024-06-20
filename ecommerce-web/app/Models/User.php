@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Request;
 
 class User extends Authenticatable
 {
@@ -49,6 +50,31 @@ class User extends Authenticatable
             ->where('is_deleted','=',0)
             ->orderBy('id','desc')
             ->get();
+    }
+
+    static public function getCustomer()
+    {
+        $return =  User::select('users.*');
+        if(!empty(Request::get('id'))){
+            $return = $return->where('id', '=', Request::get('id'));
+        }
+        if(!empty(Request::get('name'))){
+            $return = $return->where('name', 'like','%'.Request::get('name').'%');
+        }
+        if(!empty(Request::get('email'))){
+            $return = $return->where('email', 'like','%'.Request::get('email').'%');
+        }
+        if(!empty(Request::get('from_date'))){
+            $return = $return->whereDate('created_at', '>=',Request::get('from_date'));
+        }
+        if(!empty(Request::get('to_date'))){
+            $return = $return->whereDate('created_at', '<=',Request::get('to_date'));
+        }
+        $return = $return->where('is_admin','=',0)
+                ->where('is_deleted','=',0)
+                ->orderBy('id','desc')
+                ->paginate(20);
+        return $return;
     }
 
     static public function getSingle($id){
