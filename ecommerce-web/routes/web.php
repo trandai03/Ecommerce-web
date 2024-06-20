@@ -40,8 +40,12 @@ Route::get('admin/logout', [AuthController::class, 'logout_admin']);
 Route::group(['middleware' => 'user'], function(){
     Route::get('user/dashboard', [UserController::class, 'dashboard']);
     Route::get('user/orders', [UserController::class, 'orders']);
+    Route::get('user/orders/detail/{id}', [UserController::class, 'orders_detail']);
+
     Route::get('user/edit-profile', [UserController::class, 'edit_profile']);
+    Route::post('user/edit-profile', [UserController::class, 'update_profile']);
     Route::get('user/change-password', [UserController::class, 'change_password']);
+    Route::post('user/change-password', [UserController::class, 'update_password']);
 
     Route::get('my-wishlist', [ProductFront::class, 'my_wishlist']);
     Route::post('add_to_wishlist', [UserController::class, 'add_to_wishlist']);

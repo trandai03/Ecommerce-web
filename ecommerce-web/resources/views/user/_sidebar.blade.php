@@ -13,7 +13,7 @@
             <a href="{{url('user/change-password')}}" class="nav-link @if(Request::segment(2) == 'change-password') active @endif" >Change Password</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link " href="{{url('admin/logout')}}">Logout</a>
+            <a class="nav-link " href="{{url('user_logout')}}">Logout</a>
         </li>
     </ul>
 </aside><!-- End .col-lg-3 -->

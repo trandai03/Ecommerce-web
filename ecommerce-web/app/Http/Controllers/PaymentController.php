@@ -202,7 +202,7 @@ class PaymentController extends Controller
                     $order_item->size_amount = $getSize->price;
                 }
 
-                $order_item->total_price = $cart->price;
+                $order_item->total_price = $cart->price * $cart->quantity;
                 $order_item->save();
             }
             $json['status'] = true;
@@ -226,7 +226,7 @@ class PaymentController extends Controller
                     Cart::clear();
                     return redirect('cart')->with('success', "Order successfully placed");
                 }
-            }   
+            }
             else{
                 abort(404);
             }
