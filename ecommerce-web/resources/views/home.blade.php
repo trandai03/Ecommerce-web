@@ -169,7 +169,7 @@
         			<div class="col-sm-12 col-lg-4 banners-sm">
             				<div class="banner banner-display banner-link-anim col-lg-12 col-6">
                     			<a href="{{url($category->slug)}}">
-                    				<img src="{{$category->getImage()}}" alt="{{$category->name}}">
+                    				<img style="width: 376px ; height: 230px; object-fit: cover;" src="{{$category->getImage()}}" alt="{{$category->name}}">
                     			</a>
                     			<div class="banner-content banner-content-center">
                     				<h3 class="banner-title text-white"><a href="{{$category->slug}}">{{$category->name}}</a></h3>

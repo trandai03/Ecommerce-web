@@ -25,9 +25,7 @@ class OrderController extends Controller
     public function order_status(Request $request){
         $getOrder = OrderModel::getSingle($request->order_id);
         $getOrder->status = $request->status;
-        
         $getOrder->save();
-
         $json['message'] = "Status successfully updated";
         echo json_encode($json);
     }
