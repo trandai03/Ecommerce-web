@@ -160,7 +160,6 @@ Route::post('forgot_password', [AuthController::class, 'auth_forgot_password']);
 Route::get('reset/{token}', [AuthController::class, 'reset']);
 Route::post('reset/{token}', [AuthController::class, 'auth_reset']);
 //
-Route::get('test-email', [AuthController::class, 'testEmail']);
 Route::get('search', [ProductFront::class, 'getProductSearch']);
 Route::post('/get_filter_product_ajax', [ProductFront::class, 'getFilterProductAjax']);
 Route::get('{category?}/{subcategory?} ', [ProductFront::class, 'getCategory']);
