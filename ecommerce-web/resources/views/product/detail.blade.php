@@ -103,7 +103,11 @@
                                 </div><!-- End .details-filter-row -->
 
                                 <div class="product-details-action">
+                                    @if(empty(Auth::check()))
+                                    <button class="btn-product btn-cart"><a href="#signin-modal" data-toggle="modal">Add to Cart</a></button>
+                                    @else
                                     <button type="submit" class="btn-product btn-cart">Add to Cart</button>
+                                    @endif
                                     <div class="details-action-wrapper">
                                         @if(!empty(Auth::check()))
                                         <a href="javascript:;" id="{{$getProduct->id}}" class="add_to_wishlist add_to_wishlist{{$getProduct->id}} {{ !empty($getProduct->checkWishlist($getProduct->id)) ? 'btn-wishlist-add' : ''}} btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>

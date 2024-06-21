@@ -99,6 +99,7 @@ Route::group(['middleware' => 'admin'], function(){
     Route::post('admin/product/add', [ProductController::class, 'insert']);
     Route::get('admin/product/edit/{id}', [ProductController::class, 'edit']);
     Route::post('admin/product/edit/{id}', [ProductController::class, 'update']);
+    Route::get('admin/product/delete/{id}', [ProductController::class, 'delete']);
     Route::get('admin/product/image_delete/{id}', [ProductController::class, 'image_delete']);
     Route::post('admin/product_image_sortable', [ProductController::class, 'product_image_sortable']);
     //Discount Code
@@ -159,6 +160,7 @@ Route::post('forgot_password', [AuthController::class, 'auth_forgot_password']);
 Route::get('reset/{token}', [AuthController::class, 'reset']);
 Route::post('reset/{token}', [AuthController::class, 'auth_reset']);
 //
+Route::get('test-email', [AuthController::class, 'testEmail']);
 Route::get('search', [ProductFront::class, 'getProductSearch']);
 Route::post('/get_filter_product_ajax', [ProductFront::class, 'getFilterProductAjax']);
 Route::get('{category?}/{subcategory?} ', [ProductFront::class, 'getCategory']);

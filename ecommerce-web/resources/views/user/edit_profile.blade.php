@@ -33,7 +33,7 @@
                                     <div class="col-sm-6">
                                         <label>Last Name *</label>
                                         <input type="text" value="{{$getRecord->last_name}}"  name="last_name" class="form-control" required>
-                                    </div><!-- End .col-sm-6 -->
+                                    </div>
                                 </div><!-- End .row -->
 
                                 <label>Company Name (Optional)</label>

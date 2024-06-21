@@ -233,6 +233,7 @@
                 <div class="mb-2"></div><!-- End .mb-2 -->
             </div><!-- End .container -->
 
+            @if(empty(Auth::check()))
             <div class="cta cta-display bg-image pt-4 pb-4" style="background-image: url(assets/images/backgrounds/cta/bg-6.jpg);">
                 <div class="container">
                     <div class="row justify-content-center">
@@ -244,12 +245,13 @@
                                 </div><!-- End .col -->
 
                                 <div class="col-auto">
-                                    <a href="login.html" class="btn btn-outline-white"><span>SIGN UP</span><i class="icon-long-arrow-right"></i></a>
+                                    <a href="#signin-modal" data-toggle="modal" class="btn btn-outline-white"><span>SIGN UP</span><i class="icon-long-arrow-right"></i></a>
                                 </div><!-- End .col-auto -->
                             </div><!-- End .row no-gutters -->
                         </div><!-- End .col-md-10 col-lg-9 -->
                     </div><!-- End .row -->
                 </div><!-- End .container -->
             </div><!-- End .cta -->
+            @endif
         </main>
 @endsection

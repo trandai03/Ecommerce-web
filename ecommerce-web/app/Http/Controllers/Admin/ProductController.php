@@ -161,4 +161,12 @@ class ProductController extends Controller
             }
         }
     }
+
+    public function delete($id){
+        $product = ProductModel::getSingle($id);
+        $product->is_delete = 1;
+        $product->save();
+
+        return redirect()->back()->with('success', "Product Successfully Deleted");
+    }
 }

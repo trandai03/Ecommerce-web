@@ -141,4 +141,11 @@ class AuthController extends Controller
             return redirect()->back()->with('error', "Password and confirm password does not match");
         }
     }
+
+    public function testEmail(Request $request){
+        $name = 'Duong';
+        Mail::send('emails.test', compact('name'), function($email){
+            $email->to('duongthichvo@gmail.com', 'Hello world');
+        });
+    }
 }
